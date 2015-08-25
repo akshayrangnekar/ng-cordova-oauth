@@ -218,21 +218,7 @@ angular.module("oauth.providers", ["oauth.utils"])
                                 redirect_uri = options.redirect_uri;
                             }
                         }
-                        var browserRef;
-                        if( window.cordova && cordova.platformId === "android" && window.inAppBrowserXwalk) {
-                            console.log('Using inAppBrowserXwalk');
-                            var borwoptions = {
-                                toolbarColor: '#FFFFFF', // Background color of the toolbar in #RRGGBB
-                                toolbarHeight: '40',
-                                closeButtonText: '< Close',
-                                closeButtonSize: '25',
-                                closeButtonColor: '#000000',
-                            };
-                            browserRef = window.inAppBrowserXwalk.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&scope=' + appScope.join(" ") + '&approval_prompt=force&response_type=token', borwoptions);
-                        } else {
-                            console.log('Not Using inAppBrowserXwalk');
-                            browserRef = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&scope=' + appScope.join(" ") + '&approval_prompt=force&response_type=token', '_blank', 'location=no,clearsessioncache=no,clearcache=no');
-                        }
+                        var browserRef = window.open('https://accounts.google.com/o/oauth2/auth?client_id=' + clientId + '&redirect_uri=' + redirect_uri + '&scope=' + appScope.join(" ") + '&approval_prompt=force&response_type=token', '_blank', 'location=no,clearsessioncache=no,clearcache=no');
                         browserRef.addEventListener("loadstart", function(event) {
                             if((event.url).indexOf(redirect_uri) === 0) {
                            		browserRef.removeEventListener("exit",function(event){});
