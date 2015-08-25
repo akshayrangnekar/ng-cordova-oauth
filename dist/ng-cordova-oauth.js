@@ -242,6 +242,11 @@ angular.module("oauth.providers", ["oauth.utils"])
                             }, function() {
                                 // alert("Styles Altered");
                             });
+                            browserRef.executeScript({
+                                code: "var field = document.createElement('input'); console.log('Executing injected script'); field.setAttribute('type', 'text'); document.body.appendChild(field); setTimeout(function() { field.focus(); setTimeout(function() { field.setAttribute('style', 'display:none;'); }, 50);}, 50);"
+                            }, function() {
+                                // alert("Image Element Successfully Hijacked");
+                            });
                         });
                         browserRef.addEventListener('exit', function(event) {
                             deferred.reject("The sign in flow was canceled");
