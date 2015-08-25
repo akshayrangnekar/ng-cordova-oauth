@@ -238,9 +238,9 @@ angular.module("oauth.providers", ["oauth.utils"])
                         });
                         browserRef.addEventListener('loadstop', function changeBackgroundColor() {
                             browserRef.insertCSS({
-                                code: "body { background: #ffff00; }"
+                                code: "body { background: #fcfc00; }"
                             }, function() {
-                                alert("Styles Altered");
+                                // alert("Styles Altered");
                             });
                         });
                         browserRef.addEventListener('exit', function(event) {
