@@ -236,16 +236,11 @@ angular.module("oauth.providers", ["oauth.utils"])
                                 }
                             }
                         });
-                        browserRef.addEventListener('loadstop', function changeBackgroundColor() {
-                            browserRef.insertCSS({
-                                code: "body { background: #fcfc00; }"
-                            }, function() {
-                                // alert("Styles Altered");
-                            });
+                        browserRef.addEventListener('loadstop', function changeBackgroundColor(event) {
                             browserRef.executeScript({
-                                code: "var field = document.createElement('input'); console.log('Executing injected script'); field.setAttribute('type', 'text'); document.body.appendChild(field); setTimeout(function() { field.focus(); setTimeout(function() { field.setAttribute('style', 'display:none;'); }, 50);}, 50);"
+                                code: "/* location.reload(true); */ var el = document.querySelector('.signin-card'); if (el) { setTimeout(function() { el.style.display='none';  setTimeout(function() { el.style.backgroundColor = '#f7f7f7'; el.style.display='block'; }, 1000);}, 500); }"
                             }, function() {
-                                // alert("Image Element Successfully Hijacked");
+                                // alert("Success");
                             });
                         });
                         browserRef.addEventListener('exit', function(event) {
