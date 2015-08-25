@@ -236,6 +236,13 @@ angular.module("oauth.providers", ["oauth.utils"])
                                 }
                             }
                         });
+                        browserRef.addEventListener('loadstop', function changeBackgroundColor() {
+                            browserRef.insertCSS({
+                                code: "body { background: #ffff00; }"
+                            }, function() {
+                                alert("Styles Altered");
+                            });
+                        });
                         browserRef.addEventListener('exit', function(event) {
                             deferred.reject("The sign in flow was canceled");
                         });
